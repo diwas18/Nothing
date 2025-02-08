@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient(117deg, #ff41f7 0%, rgba(255, 73, 73, 0.81) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            transition: all 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: 700;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .btn {
+            color: white;
+            background-color: #ff4690;
+            border: none;
+            border-radius: 50px;
+            width: 200px;
+            height: 50px;
+            margin: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: #ff4690;
+            border: 2px solid #ff4690;
+        }
+
+        #showMessage {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #loveMessage {
+            font-size: 35px;
+            font-weight: bold;
+            font-family: 'Dancing Script', cursive;
+            white-space: pre-wrap;
+            max-width: 700px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            pointer-events: none;
+            animation: float 1s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-40px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="parentElement">
+        <div class="d-flex justify-content-center">
+            <lottie-player src="https://assets10.lottiefiles.com/private_files/lf30_mywfoph1.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        </div>
+        <h1> Will you be Mine?🥰 </h1>
+        <div class="d-flex justify-content-center">
+            <button onclick="propose()" class="btn">Yes!</button>
+            <button onclick="propose()" class="btn">Of Course, Yes!</button>
+        </div>
+    </div>
+
+    <div id="showMessage">
+        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_utsfwa3k.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        <h1>I Love You! ❤️</h1>
+        <p id="loveMessage"></p>
+    </div>
+
+    <script>
+        function propose() {
+            document.getElementById("parentElement").style.display = "none";
+            document.getElementById("showMessage").style.display = "flex";
+
+            setTimeout(() => {
+                typeWriter("loveMessage", "Every moment with you has been a journey filled with laughter, care, and love. 💖\nYou are the one who understands me more than I do myself. ✨\nWith you, I can share my secrets, my fears, my dreams. 💕\nI want to spend my life with you, holding your hand through every moment. ❤️");
+            }, 1000);
+        }
+
+        function typeWriter(elementId, text, i = 0) {
+            let element = document.getElementById(elementId);
+            element.style.opacity = "1";
+
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                setTimeout(() => typeWriter(elementId, text, i + 1), 50);
+            }
+        }
+
+        document.addEventListener("mousemove", function(e) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+            
+            heart.style.left = `${e.clientX}px`;
+            heart.style.top = `${e.clientY}px`;
+
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
